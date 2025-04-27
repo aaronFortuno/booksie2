@@ -1,15 +1,15 @@
 package net.estemon.booksie.ui.login.ui
 
-import android.graphics.ColorFilter
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +18,8 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -88,8 +90,6 @@ fun LoginScreen() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-
-
             Spacer(modifier = Modifier.weight(topSpacerWeight))
             HeaderImage(
                 modifier = Modifier.scale(logoSize)
@@ -106,8 +106,10 @@ fun LoginScreen() {
                 onValueChange = { password = it },
                 onFocusChanged = { focused -> isKeyboardVisible = focused }
             )
-            Spacer(modifier = Modifier.padding(16.dp))
+            ForgotPassword(Modifier.align(Alignment.End))
+            Spacer(modifier = Modifier.padding(4.dp))
             LoginButton()
+            Spacer(modifier = Modifier.padding(16.dp))
             ThemeButton(scope, themeManager, isDarkMode)
             Spacer(modifier = Modifier.weight(1f))
         }
@@ -209,9 +211,9 @@ fun PasswordField(
                     else
                         Icons.Default.Visibility,
                     contentDescription = if (passwordVisible)
-                        "Ocultar contraseña"
+                        "Hide password"
                     else
-                        "Mostrar contraseña",
+                        "Show password",
                     tint = colorScheme.primary
                 )
             }
@@ -220,8 +222,36 @@ fun PasswordField(
 }
 
 @Composable
+fun ForgotPassword(modifier: Modifier) {
+    Text(
+        text = "Forgot password?",
+        color = colorScheme.primary,
+        style = MaterialTheme.typography.bodyMedium,
+        modifier = modifier
+            .clickable {}
+            .padding(4.dp)
+    )
+}
+
+@Composable
 fun LoginButton() {
-    //
+    Button(
+        onClick = {},
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = colorScheme.primary,
+            contentColor = colorScheme.onPrimary,
+            disabledContainerColor = colorScheme.primary.copy(alpha = 0.5f),
+            disabledContentColor = colorScheme.onPrimary.copy(alpha = 0.5f)
+        ),
+        shape = MaterialTheme.shapes.extraSmall,
+    ) {
+        Text(
+            text = "Login"
+        )
+    }
 }
 
 @Composable
