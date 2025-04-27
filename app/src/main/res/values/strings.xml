@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Booksie</string>
+    <string name="light_mode">Light mode</string>
+    <string name="dark_mode">Dark mode</string>
+</resources>
